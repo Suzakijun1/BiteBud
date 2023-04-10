@@ -1,2 +1,20 @@
-# mini-project-library
-An application that searches and displays results from the Library of Congress API
+# Project Title
+
+# Description
+
+A brief description of your project and what it does.
+
+# Table of Contents
+
+- Usage
+- Contributing
+- License
+- Credit
+
+# Usage
+
+# Contributing
+
+# License
+
+# Credit

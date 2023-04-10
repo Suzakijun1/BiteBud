@@ -1,20 +1,23 @@
-# Project Title
+# Bite-Bud
 
-# Description
+## description
 
-A brief description of your project and what it does.
+Bite-Bud allows users to search a city of any choice and receive a list of nearby restaurants instantly. Info about the restaurant and it's menu is presented to the user. See first hand experiences and location atmosphere with youtube videos that are displayed with the listed restaurant.
 
-# Table of Contents
+## Usage
 
-- Usage
-- Contributing
-- License
-- Credit
+No installation required.
 
-# Usage
+Search any city name and hit search. A page containing local restaurants will be displayed along with related YouTube videos.
 
-# Contributing
+## view <a href="">Live page!</a>
 
-# License
+ <img src="">
 
-# Credit
+## Contributors
+
+<a href="">Jesse Emerson, </a> <a href="">Youlormans Hilaire, </a> <a href="">Alan Pereyro, </a> <a href="">Trent Stanley, </a> <a href="">Dylan Yong</a>
+
+## License
+
+MIT license.

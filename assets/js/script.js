@@ -39,28 +39,33 @@ function fetchLocationId(e) {
     .then((data) => {
       console.log(data.data[0].locationId);
       //send to function here with (data.data[0].locationId)
+      fetchLocationId2(data.data[0].locationId);
     })
     .catch((err) => console.error(err));
 }
 
 searchBtn.addEventListener("click", fetchLocationId);
 
-// const options = {
-//   method: "GET",
-//   headers: {
-//     "X-RapidAPI-Key": "b409b7abe1mshd693097ae9fc635p1c58ffjsn0debf85713b0",
-//     "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
-//   },
-// };
-
-// fetch(
-//   "https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchRestaurants?locationId=34515",
-//   options
-// )
-//   .then((response) => response.json())
-//   .then((response) => console.log(response))
-//   .catch((err) => console.error(err));
-
+function fetchLocationId2(functionid) {
+    
+    console.log(locationInput);
+    const options = {
+        method: "GET",
+        headers: {
+            'X-RapidAPI-Key': 'b409b7abe1mshd693097ae9fc635p1c58ffjsn0debf85713b0',
+            'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com',
+        }
+    };
+        fetch( 
+            `https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchRestaurants?locationId=${functionid}`,
+         options
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => console.error(err));
+}
 
 // let searchInput = document.getElementById("inputMain");
 // let searchBtn = document.getElementById("searchBtnMain");

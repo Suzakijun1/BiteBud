@@ -40,6 +40,10 @@ li {
   margin: 0 10px;
 }
 
+li:hover{
+  text-shadow: 1px 1px 2px rgb(43, 55, 165), 0 0 5px rgb(152, 152, 187), 0 0 0.2em rgb(0, 0, 255);
+}
+
 a {
   text-decoration: none;
 }

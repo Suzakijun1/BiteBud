@@ -1,3 +1,7 @@
+var mainPage = document.querySelector("#main-page");
+var informationPage = document.querySelector("#search-page");
+var testing = document.querySelector("#mainPageInfo");
+
 function toggleDropdown(event) {
   event.preventDefault();
   var dropdownContent = event.target.nextElementSibling;
@@ -21,7 +25,7 @@ var formMain = document.getElementById("formMain");
 
 // ****This fetch for location id number by city name
 function fetchLocationId(e) {
-  e.preventDefault();
+  // e.preventDefault();
   locationInput = searchInput.value;
   console.log(locationInput);
   const options = {
@@ -43,7 +47,12 @@ function fetchLocationId(e) {
     .catch((err) => console.error(err));
 }
 
-searchBtn.addEventListener("click", fetchLocationId);
+searchBtn.addEventListener("click", function () {
+  fetchLocationId();
+  mainPage.classList.add("hidden");
+  informationPage.classList.remove("hidden");
+  testing.classList.add("hidden");
+});
 
 // const options = {
 //   method: "GET",
@@ -61,11 +70,9 @@ searchBtn.addEventListener("click", fetchLocationId);
 //   .then((response) => console.log(response))
 //   .catch((err) => console.error(err));
 
-
 // let searchInput = document.getElementById("inputMain");
 // let searchBtn = document.getElementById("searchBtnMain");
 // let formMain = document.getElementById("myForm");
-
 
 // function fetchYoutubeVideo(e){
 //   e.preventDefault();
@@ -90,3 +97,6 @@ searchBtn.addEventListener("click", fetchLocationId);
 // 	.then(response => response.json())
 // 	.then(response => console.log(response))
 // 	.catch(err => console.error(err));
+
+// mainPage.classList.add(hidden);
+// informationPage.classList.remove(hidden);

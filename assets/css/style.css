@@ -95,6 +95,7 @@ div.list-container{
     color: #84cc16;
     border-top: #84cc16 2px solid;
     background: linear-gradient(to top, rgb(59, 54, 54), rgb(88, 102, 95));
+    margin-top: auto;
   }
 
   #mainImage {
@@ -130,3 +131,8 @@ div.list-container{
     margin-top: 10px;
   }
 
+.hello {
+  height: 100%;
+  width: 100%;
+
+}

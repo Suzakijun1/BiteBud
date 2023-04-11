@@ -119,14 +119,6 @@ function createCards(restaurants) {
   restaurants.forEach((restaurant) => {});
 }
 
-// let searchInput = document.getElementById("inputMain");
-// let searchBtn = document.getElementById("searchBtnMain");
-// let formMain = document.getElementById("myForm");
-
-// function fetchYoutubeVideo(e){
-//   e.preventDefault();
-//   const youtubeVideo = searchInput.value;
-//   console.log(youtubeVideo);
 
 function fetchYoutubeVideo(restaurant,city){
   const options = {
@@ -144,10 +136,6 @@ function fetchYoutubeVideo(restaurant,city){
     .catch(err => console.error(err));
 }
 // fetchYoutubeVideo();
-// fetch('https://youtube-data8.p.rapidapi.com/search/?q=movie&hl=en&gl=US', options)
-// 	.then(response => response.json())
-// 	.then(response => console.log(response))
-// 	.catch(err => console.error(err));
 
 // mainPage.classList.add(hidden);
 // informationPage.classList.remove(hidden);

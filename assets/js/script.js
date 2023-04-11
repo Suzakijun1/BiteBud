@@ -78,22 +78,25 @@ fetch(
     }
   })
   .catch((err) => console.error(err));
-// const options = {
-//   method: "GET",
-//   headers: {
-//     "X-RapidAPI-Key": "b409b7abe1mshd693097ae9fc635p1c58ffjsn0debf85713b0",
-//     "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
-//   },
-// };
+  function fetchYoutubeVideo(restaurant,city){
+  
 
-// fetch(
-//   "https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchRestaurants?locationId=34515",
-//   options
-// )
-//   .then((response) => response.json())
-//   .then((response) => console.log(response))
-//   .catch((err) => console.error(err));
-
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': 'cc6b170988mshf1759b35552ccc1p19f93ejsn2c2fce67394d',
+        'X-RapidAPI-Host': 'youtube-data8.p.rapidapi.com'
+      }
+    };
+  
+    fetch(`https://youtube-data8.p.rapidapi.com/search/?q=${restaurant} ${city}&hl=en&gl=US`, options)
+      .then(response => response.json())
+      .then(response => {
+        console.log(response.contents[0].video)
+      })
+      .catch(err => console.error(err));
+  }
+  
 function fetchLocationId2(functionid) {
   console.log(functionid);
   const options = {
@@ -119,24 +122,4 @@ function createCards(restaurants) {
   restaurants.forEach((restaurant) => {});
 }
 
-
-function fetchYoutubeVideo(restaurant,city){
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': 'cc6b170988mshf1759b35552ccc1p19f93ejsn2c2fce67394d',
-      'X-RapidAPI-Host': 'youtube-data8.p.rapidapi.com'
-    }
-  };
-  fetch(`https://youtube-data8.p.rapidapi.com/search/?q=${restaurant} ${city}&hl=en&gl=US`, options)
-    .then(response => response.json())
-    .then(response => {
-      console.log(response.contents[0].video)
-    })
-    .catch(err => console.error(err));
-}
-// fetchYoutubeVideo();
-
-// mainPage.classList.add(hidden);
-// informationPage.classList.remove(hidden);
 

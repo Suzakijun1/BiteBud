@@ -47,30 +47,33 @@ function fetchLocationId(e) {
 searchBtn.addEventListener("click", fetchLocationId);
 
 function fetchLocationId2(functionid) {
-    
-    console.log(locationInput);
-    const options = {
-        method: "GET",
-        headers: {
-            'X-RapidAPI-Key': 'b409b7abe1mshd693097ae9fc635p1c58ffjsn0debf85713b0',
-            'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com',
-        }
-    };
-        fetch( 
-            `https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchRestaurants?locationId=${functionid}`,
-         options
+  console.log(functionid);
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "b409b7abe1mshd693097ae9fc635p1c58ffjsn0debf85713b0",
+      "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
+    },
+  };
+  fetch(
+    `https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchRestaurants?locationId=${functionid}`,
+    options
   )
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
+      createCards(data.data.data);
     })
     .catch((err) => console.error(err));
+}
+
+function createCards(restaurants) {
+  restaurants.forEach((restaurant) => {});
 }
 
 // let searchInput = document.getElementById("inputMain");
 // let searchBtn = document.getElementById("searchBtnMain");
 // let formMain = document.getElementById("myForm");
-
 
 // function fetchYoutubeVideo(e){
 //   e.preventDefault();

@@ -1,19 +1,23 @@
 :root{
     font-family: Georgia, 'Times New Roman', Times, serif;
+    --greentext:#84cc16;
+    --background:#b8c7f2;
+    --container1:#2d3347;
 
 }
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1e40af;
+  background-color: #2d3347;
   height: 80px;
   padding: 0 20px;
   color: #84cc16;
   font-size: 23px;
+  border-bottom: #84cc16 2px solid;
 }
 body{
-    background-color: #404040;
+    background-color: #b8c7f2;
 }
 
 .navBar {
@@ -21,6 +25,7 @@ body{
   justify-content: space-between;
   align-items: center;
   width: 100%;
+ 
 }
 
 ul {
@@ -39,12 +44,45 @@ a {
   text-decoration: none;
 }
 .footerBar {
-    position: fixed;
-    bottom: 0;
+    
+    
     width: 100%;
     text-align: center;
-    background-color: #1e40af;
+    background-color: #2d3347;
     padding: 10px;
     font-size: 15px;
     color: #84cc16;
+    border-top: #84cc16 2px solid;
+  }
+
+  #mainImage {
+    border-radius: 16px;
+    box-shadow: -3px 5px 20px black;
+  }
+
+  #inputMain {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  
+  #inputMain:hover{
+    box-shadow: 2px 2px 20px #e8ece377;
+  }
+
+  #mainPageInfo{
+    color: #84cc16;
+    text-align: center;
+    position: relative;
+    bottom: -110px;
+    right: -40%;
+    background-color: #2d3347;
+    width: 20%;
+    border-radius: 9px;
+    box-shadow: -2px 3px 7px black;
+  }
+
+  #logoMain {
+    border: #84cc16 solid 1px;
+    padding: 7px;
+    border-radius: 3px;
   }

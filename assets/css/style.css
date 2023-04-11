@@ -121,6 +121,7 @@ div.list-container{
     width: 20%;
     border-radius: 9px;
     box-shadow: -2px 3px 7px black;
+    padding: 10px;
   }
 
   #logoMain {

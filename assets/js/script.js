@@ -122,3 +122,4 @@ function createCards(restaurants) {
   restaurants.forEach((restaurant) => {});
 }
 
+

@@ -31,15 +31,51 @@ ul {
   padding: 0;
 }
 
-li {
-  margin: 0 10px;
-}
+.favoritesButton {
+    margin-right: 10px; 
+  }
+  
+  .recentButton {
+    margin-left: 20px; 
+  }
 
-a {
-  text-decoration: none;
-}
+.dropbtn {
+    padding: 20px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .dropbtn:hover {
+    background-color: #404040;
+    border-radius: 6px;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1e40af;
+    min-width: 160px;
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: #84cc16;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-radius: 6px;
+    
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #404040;
+  }
+  
+  .show {
+    display: block;
+  }
+
 .footerBar {
-    position: fixed;
     bottom: 0;
     width: 100%;
     text-align: center;

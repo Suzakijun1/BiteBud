@@ -58,7 +58,7 @@ ul {
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #1e40af;
+    background-color: var(--container1);
     min-width: 160px;
     z-index: 1;
   }
@@ -80,6 +80,7 @@ ul {
     display: block;
   }
 
+  footer{
     width: 100%;
     text-align: center;
     background-color: #2d3347;

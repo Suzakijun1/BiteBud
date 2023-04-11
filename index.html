@@ -9,7 +9,9 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <title>BiteBud</title>
 </head>
-<body>
+
+<body class="min-h-screen">
+  <div class="flex flex-col min-h-full"></div>
   <header>
 
     <div class="navBar">
@@ -18,7 +20,7 @@
       </div>
 
       <div>
-        <ul class = "flex items-center space-x-6">
+        <ul class="flex items-center space-x-6">
           <li class="dropdown">
             <button class="dropbtn" onclick="toggleDropdown(event)">Favorites❤️</button>
             <div class="dropdown-content">
@@ -39,30 +41,37 @@
       </div>
 
   </header>
-  <main>
+  <main class="flex-grow">
     <!-- main page with search bar for city -->
     <section id="mainPage">
       <!-- section for restaurant info and youtube to be displayed -->
-      <section id="mainPageInfo"><h2>Input a city name and receive information on nearby bites!</h2></section>
-    <section id="main-page">
-      <div class="relative h-screen">
-        <div id="mainImage" class="absolute inset-0 bg-cover bg-center"
-          style="background-image: url('./assets/images/enjoying-lunch-with-friends.png'); width: 50%; height: 50%; top: 25%; left: 25%;">
-        </div>
-        <div class="absolute inset-0 flex justify-center items-center">
-          <div class="w-1/2">
-            <form onsubmit="return false;" id="formMain" class="flex justify-center items-center">
-              <input id="inputMain" class="w-1/2 border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-                type="text" placeholder="Search">
-              <button id="searchBtnMain"  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-lg"> Search
-              </button>
-            </form>
+      <section id="mainPageInfo">
+        <h2>Input a city name and receive information on nearby bites!</h2>
+      </section>
+      <section id="main-page">
+        <div class="relative h-screen">
+          <div id="mainImage" class="absolute inset-0 bg-cover bg-center"
+            style="background-image: url('./assets/images/enjoying-lunch-with-friends.png'); width: 50%; height: 50%; top: 25%; left: 25%;">
+          </div>
+          <div class="absolute inset-0 flex justify-center items-center">
+            <div class="w-1/2">
+              <form onsubmit="return false;" id="formMain" class="flex justify-center items-center">
+                <input id="inputMain"
+                  class="w-1/2 border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                  type="text" placeholder="Search">
+                <button id="searchBtnMain"
+                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-lg"> Search
+                </button>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
       </section>
-          <!-- section for restaurant info and youtube to be displayed -->
-          <section id="search-page"></section>
+      <!-- section for restaurant info and youtube to be displayed -->
+      <section id="search-page" class="hidden">
+        <p>Hello</p>
+
+      </section>
   </main>
   <footer class="footerBar">
     <div>

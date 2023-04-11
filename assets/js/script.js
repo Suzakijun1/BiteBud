@@ -1,3 +1,7 @@
+var mainPage = document.querySelector("#main-page");
+var informationPage = document.querySelector("#search-page");
+var testing = document.querySelector("#mainPageInfo");
+
 function toggleDropdown(event) {
   event.preventDefault();
   var dropdownContent = event.target.nextElementSibling;
@@ -21,7 +25,7 @@ var formMain = document.getElementById("formMain");
 
 // ****This fetch for location id number by city name
 function fetchLocationId(e) {
-  e.preventDefault();
+  // e.preventDefault();
   locationInput = searchInput.value;
   console.log(locationInput);
   const options = {
@@ -44,7 +48,29 @@ function fetchLocationId(e) {
     .catch((err) => console.error(err));
 }
 
-searchBtn.addEventListener("click", fetchLocationId);
+searchBtn.addEventListener("click", function () {
+  fetchLocationId();
+  mainPage.classList.add("hidden");
+  informationPage.classList.remove("hidden");
+  testing.classList.add("hidden");
+});
+
+
+// const options = {
+//   method: "GET",
+//   headers: {
+//     "X-RapidAPI-Key": "b409b7abe1mshd693097ae9fc635p1c58ffjsn0debf85713b0",
+//     "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
+//   },
+// };
+
+// fetch(
+//   "https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchRestaurants?locationId=34515",
+//   options
+// )
+//   .then((response) => response.json())
+//   .then((response) => console.log(response))
+//   .catch((err) => console.error(err));
 
 function fetchLocationId2(functionid) {
     
@@ -71,7 +97,6 @@ function fetchLocationId2(functionid) {
 // let searchBtn = document.getElementById("searchBtnMain");
 // let formMain = document.getElementById("myForm");
 
-
 // function fetchYoutubeVideo(e){
 //   e.preventDefault();
 //   const youtubeVideo = searchInput.value;
@@ -95,3 +120,6 @@ function fetchLocationId2(functionid) {
 // 	.then(response => response.json())
 // 	.then(response => console.log(response))
 // 	.catch(err => console.error(err));
+
+// mainPage.classList.add(hidden);
+// informationPage.classList.remove(hidden);

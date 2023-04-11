@@ -58,7 +58,7 @@ ul {
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #1e40af;
+    background-color: var(--container1);
     min-width: 160px;
     z-index: 1;
   }

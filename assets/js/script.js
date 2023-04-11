@@ -1,6 +1,7 @@
 var mainPage = document.querySelector("#main-page");
 var informationPage = document.querySelector("#search-page");
 var testing = document.querySelector("#mainPageInfo");
+var loadingIcon = document.querySelector("#loadingIcon");
 
 function toggleDropdown(event) {
   event.preventDefault();
@@ -35,9 +36,11 @@ function fetchLocationId(e) {
       "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
     },
   };
+
   fetch(
     `https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchLocation?query=${locationInput}`,
-    options
+    options,
+    (loadingIcon.style.display = "block")
   )
     .then((response) => response.json())
     .then((data) => {
@@ -45,7 +48,10 @@ function fetchLocationId(e) {
       //send to function here with (data.data[0].locationId)
       fetchLocationId2(data.data[0].locationId);
     })
-    .catch((err) => console.error(err));
+    .catch((err) => console.error(err))
+    .finally(() => {
+      loadingIcon.style.display = "none";
+    });
 }
 
 searchBtn.addEventListener("click", function () {
@@ -54,7 +60,6 @@ searchBtn.addEventListener("click", function () {
   informationPage.classList.remove("hidden");
   testing.classList.add("hidden");
 });
-
 
 // const options = {
 //   method: "GET",
@@ -73,18 +78,17 @@ searchBtn.addEventListener("click", function () {
 //   .catch((err) => console.error(err));
 
 function fetchLocationId2(functionid) {
-    
-    console.log(locationInput);
-    const options = {
-        method: "GET",
-        headers: {
-            'X-RapidAPI-Key': 'b409b7abe1mshd693097ae9fc635p1c58ffjsn0debf85713b0',
-            'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com',
-        }
-    };
-        fetch( 
-            `https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchRestaurants?locationId=${functionid}`,
-         options
+  console.log(locationInput);
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "b409b7abe1mshd693097ae9fc635p1c58ffjsn0debf85713b0",
+      "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
+    },
+  };
+  fetch(
+    `https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchRestaurants?locationId=${functionid}`,
+    options
   )
     .then((response) => response.json())
     .then((data) => {
@@ -120,6 +124,3 @@ function fetchLocationId2(functionid) {
 // 	.then(response => response.json())
 // 	.then(response => console.log(response))
 // 	.catch(err => console.error(err));
-
-// mainPage.classList.add(hidden);
-// informationPage.classList.remove(hidden);

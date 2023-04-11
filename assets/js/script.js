@@ -50,15 +50,25 @@ function toggleDropdown(event) {
 //   .catch((err) => console.error(err));
 
 
-// const options = {
-// 	method: 'GET',
-// 	headers: {
-// 		'X-RapidAPI-Key': 'cc6b170988mshf1759b35552ccc1p19f93ejsn2c2fce67394d',
-// 		'X-RapidAPI-Host': 'youtube-data8.p.rapidapi.com'
-// 	}
-// };
+// let searchInput = document.getElementById("inputMain");
+// let searchBtn = document.getElementById("searchBtnMain");
+// let formMain = document.getElementById("myForm");
 
-// fetch('https://youtube-data8.p.rapidapi.com/search/?q=movie&hl=en&gl=US', options)
-// 	.then(response => response.json())
-// 	.then(response => console.log(response))
-// 	.catch(err => console.error(err));
+// function fetchYoutubeVideo(e){
+//   e.preventDefault();
+//   const youtubeVideo = searchInput.value;
+//   console.log(youtubeVideo);
+
+//   const options = {
+//     method: 'GET',
+//     headers: {
+//       'X-RapidAPI-Key': 'cc6b170988mshf1759b35552ccc1p19f93ejsn2c2fce67394d',
+//       'X-RapidAPI-Host': 'youtube-data8.p.rapidapi.com'
+//     }
+//   };
+
+//   fetch(`https://youtube-data8.p.rapidapi.com/search/?q=${youtubeVideo}&hl=en&gl=US`, options)
+//     .then(response => response.json())
+//     .then(response => console.log(response))
+//     .catch(err => console.error(err));
+// }

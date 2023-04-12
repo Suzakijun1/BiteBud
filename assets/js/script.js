@@ -28,14 +28,14 @@ var stateInput = document.getElementById("inputState");
 var searchBtn = document.getElementById("searchBtnMain");
 var formMain = document.getElementById("formMain");
 
-function getRestaurants(){
-const options = {
-  method: 'GET',
-  headers: {
-      'X-RapidAPI-Key': 'cc6b170988mshf1759b35552ccc1p19f93ejsn2c2fce67394d',
-      'X-RapidAPI-Host': 'restaurants-near-me-usa.p.rapidapi.com'
-  }
-};
+function getRestaurants() {
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "cc6b170988mshf1759b35552ccc1p19f93ejsn2c2fce67394d",
+      "X-RapidAPI-Host": "restaurants-near-me-usa.p.rapidapi.com",
+    },
+  };
   fetch(
     `https://restaurants-near-me-usa.p.rapidapi.com/restaurants/location/state/${stateInput.value}/city/${cityInput.value}/0`,
     options
@@ -47,7 +47,7 @@ const options = {
     })
     .catch((err) => console.error(err));
   console.log(stateInput);
-};
+}
 
 //**** search bar button event listener to start function chain and to hide main page
 searchBtn.addEventListener("click", function () {
@@ -86,11 +86,11 @@ function createCards(restaurantsArray) {
   //foreach loop to create cards and append all drilled info onto them. may need to put picture and title into one div and info into another.
   restaurantsArray.forEach((restaurant) => {
     const card = document.createElement("div");
-    card.setAttribute("class", "container wrap");
-    //img
+    card.setAttribute("class", "container");
+    //website preview
     const restWeb = document.createElement("h3");
-    restWeb.setAttribute("src", restaurant.website);
     restWeb.setAttribute("class", "restWeb");
+    restWeb.innerText = restaurant.website;
     //name
     const restName = document.createElement("h3");
     restName.setAttribute("class", "restName");

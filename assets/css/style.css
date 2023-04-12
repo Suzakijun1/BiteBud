@@ -159,3 +159,20 @@ div.list-container{
     border-radius: 4px;
     box-shadow: 2px 2px 20px #e8ece377;
   }
+
+  .container-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .container {
+    color: aliceblue;
+    width: calc(100% - 10px);
+    height: 200px;
+    border-radius: 6px;
+    background-color: #2d3347;
+    margin-bottom: 20px;
+  }

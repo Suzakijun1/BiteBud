@@ -79,6 +79,7 @@ function fetchYoutubeVideo(restaurant, city) {
 
 //**** creates cards that contain restaurants pic name price range open status
 function createCards(restaurantsArray) {
+  loadingIcon.setAttribute("class", "hidden");
   console.log(restaurantsArray);
   searchDiv = document.getElementById("search-page");
   containerWrapDiv = document.createElement("div");

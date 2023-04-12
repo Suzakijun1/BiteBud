@@ -90,12 +90,14 @@ function fetchLocationId2(functionid) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data.data.data);
-      // createCards(data.data.data); *commented out for future changes
-      console.log(data.data.data);
+      var topFiveArray = [];
+
       for (var i = 0; i < 5; i++) {
-        console.log(data.data.data[i]);
-        console.log(data.data.data[i].name);
-        console.log(data.data.data[i].parentGeoName);
+        topFiveArray.push(data.data.data[i]);
+      }
+      createCards(topFiveArray);
+
+      for (var i = 0; i < 5; i++) {
         fetchYoutubeVideo(
           data.data.data[i].name,
           data.data.data[i].parentGeoName
@@ -105,6 +107,46 @@ function fetchLocationId2(functionid) {
     .catch((err) => console.error(err));
 }
 //**** creates cards that contain restaurants pic name price range open status
-function createCards(restaurants) {
-  restaurants.forEach((restaurant) => {});
+function createCards(topFiveArray) {
+  console.log(topFiveArray);
+  searchDiv = document.getElementById("search-page");
+  //foreach loop to create cards and append all drilled info onto them. may need to put picture and title into one div and info into another.
+  topFiveArray.forEach((restaurant) => {
+    const card = document.createElement("div");
+    card.setAttribute("class", "restaurantCard");
+    //img
+    const restHeroImg = document.createElement("img");
+    restHeroImg.setAttribute("src", restaurant.heroImgUrl);
+    restHeroImg.setAttribute("class", "restHeroImg");
+    restHeroImg.setAttribute("alt", "Restaurant image");
+    //name
+    const restName = document.createElement("h3");
+    restName.setAttribute("class", "restName");
+    restName.innerText = restaurant.name;
+    //rating in stars
+    const restRating = document.createElement("h3");
+    restRating.setAttribute("class", "restRating");
+    restRating.innerText = restaurant.averageRating;
+    //price range
+    const restPrice = document.createElement("h3");
+    restPrice.setAttribute("class", "restPrice");
+    restPrice.innerText = restaurant.priceTag;
+    //type of food
+    const restType = document.createElement("h3");
+    restType.setAttribute("class", "restType");
+    restType.innerText = restaurant.establishmentTypeAndCuisineTags[0];
+    //open status
+    const restOpen = document.createElement("h3");
+    restOpen.setAttribute("class", "restOpen");
+    restOpen.innerText = restaurant.currentOpenStatusText;
+    //appending to card div and then to search div
+    card.append(restHeroImg);
+    card.append(restName);
+    card.append(restRating);
+    card.append(restPrice);
+    card.append(restType);
+    card.append(restOpen);
+
+    searchDiv.append(card);
+  });
 }

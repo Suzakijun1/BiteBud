@@ -135,6 +135,11 @@ div.list-container{
     margin-top: 10px;
   }
 
+  #logoMain:hover {
+    background-color: #404040;
+    border-radius: 6px;
+  }
+
 
   #loadingIcon {
     display: flex;

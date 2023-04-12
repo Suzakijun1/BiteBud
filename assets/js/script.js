@@ -1,7 +1,9 @@
 var mainPage = document.querySelector("#main-page");
 var informationPage = document.querySelector("#search-page");
 var testing = document.querySelector("#mainPageInfo");
-
+function goBack() {
+  window.location.href = "index.html"; 
+}
 var loadingIcon = document.querySelector("#loadingIcon");
 
 //****dropdown logic for navbar
@@ -46,6 +48,7 @@ fetch(`https://restaurants-near-me-usa.p.rapidapi.com/restaurants/location/state
 
 //**** search bar button event listener to start function chain and to hide main page
 searchBtn.addEventListener("click", function () {
+ 
   getRestaurants();
   mainPage.classList.add("hidden");
   informationPage.classList.remove("hidden");

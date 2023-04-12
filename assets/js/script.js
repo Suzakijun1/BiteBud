@@ -44,7 +44,10 @@ function getRestaurants() {
     options
   )
     .then((response) => response.json())
-    .then((data) => console.log(data))
+    .then((data) => {
+      console.log(data);
+      createCards(data.restaurants);
+    })
     .catch((err) => console.error(err));
   console.log(stateInput);
 }
@@ -77,47 +80,49 @@ function fetchYoutubeVideo(restaurant, city) {
     .catch((err) => console.error(err));
 }
 
-// //**** creates cards that contain restaurants pic name price range open status
-// function createCards(topFiveArray) {
-//   console.log(topFiveArray);
-//   searchDiv = document.getElementById("search-page");
-//   //foreach loop to create cards and append all drilled info onto them. may need to put picture and title into one div and info into another.
-//   topFiveArray.forEach((restaurant) => {
-//     const card = document.createElement("div");
-//     card.setAttribute("class", "restaurantCard");
-//     //img
-//     const restHeroImg = document.createElement("img");
-//     restHeroImg.setAttribute("src", restaurant.heroImgUrl);
-//     restHeroImg.setAttribute("class", "restHeroImg");
-//     restHeroImg.setAttribute("alt", "Restaurant image");
-//     //name
-//     const restName = document.createElement("h3");
-//     restName.setAttribute("class", "restName");
-//     restName.innerText = restaurant.name;
-//     //rating in stars
-//     const restRating = document.createElement("h3");
-//     restRating.setAttribute("class", "restRating");
-//     restRating.innerText = restaurant.averageRating;
-//     //price range
-//     const restPrice = document.createElement("h3");
-//     restPrice.setAttribute("class", "restPrice");
-//     restPrice.innerText = restaurant.priceTag;
-//     //type of food
-//     const restType = document.createElement("h3");
-//     restType.setAttribute("class", "restType");
-//     restType.innerText = restaurant.establishmentTypeAndCuisineTags[0];
-//     //open status
-//     const restOpen = document.createElement("h3");
-//     restOpen.setAttribute("class", "restOpen");
-//     restOpen.innerText = restaurant.currentOpenStatusText;
-//     //appending to card div and then to search div
-//     card.append(restHeroImg);
-//     card.append(restName);
-//     card.append(restRating);
-//     card.append(restPrice);
-//     card.append(restType);
-//     card.append(restOpen);
+//**** creates cards that contain restaurants pic name price range open status
+function createCards(restaurantsArray) {
+  console.log(restaurantsArray);
+  searchDiv = document.getElementById("search-page");
+  containerWrapDiv = document.createElement("div");
+  containerWrapDiv.setAttribute("class", "container-wrapper");
+  //foreach loop to create cards and append all drilled info onto them. may need to put picture and title into one div and info into another.
+  restaurantsArray.forEach((restaurant) => {
+    const card = document.createElement("div");
+    card.setAttribute("class", "container wrap");
+    //img
+    const restWeb = document.createElement("h3");
+    restWeb.setAttribute("src", restaurant.website);
+    restWeb.setAttribute("class", "restWeb");
+    //name
+    const restName = document.createElement("h3");
+    restName.setAttribute("class", "restName");
+    restName.innerText = restaurant.restaurantName;
+    //rating in stars
+    const restPhone = document.createElement("h3");
+    restPhone.setAttribute("class", "restPhone");
+    restPhone.innerText = restaurant.phone;
+    //price range
+    const restAdd = document.createElement("h3");
+    restAdd.setAttribute("class", "restPrice");
+    restAdd.innerText = restaurant.address;
+    //type of food
+    const restType = document.createElement("h3");
+    restType.setAttribute("class", "restType");
+    restType.innerText = restaurant.cuisineType;
+    //open status
+    const restOpen = document.createElement("h3");
+    restOpen.setAttribute("class", "restOpen");
+    restOpen.innerText = restaurant.hoursInterval;
+    //appending to card div and then to search div
+    card.append(restWeb);
+    card.append(restName);
+    card.append(restPhone);
+    card.append(restAdd);
+    card.append(restType);
+    card.append(restOpen);
 
-//     searchDiv.append(card);
-//   });
-// }
+    searchDiv.append(containerWrapDiv);
+    containerWrapDiv.append(card);
+  });
+}

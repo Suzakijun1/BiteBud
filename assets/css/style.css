@@ -174,14 +174,40 @@ div.list-container{
   }
 
   .container {
-    color: aliceblue;
     width: calc(100% - 10px);
     height: 200px;
     border-radius: 6px;
     background-color: #2d3347;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
   }
 
   .hidden{
     display: none;
+  }
+
+  .cardLogoDiv{
+    color: #84cc16;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    border: 2px solid; color: #84cc16;
+    border-radius: 6px 0px 0px 6px;
+    font-size: 25px;
+  }
+
+  .restInfoDiv{
+    text-align: center;
+    width: 700px;
+    color: #b8c7f2;
+  
+
+  }
+
+  .restName{
+    font-size: 25px;
+    color: aliceblue;
   }

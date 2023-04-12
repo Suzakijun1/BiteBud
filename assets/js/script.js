@@ -27,7 +27,7 @@ var cityInput = document.getElementById("inputCity");
 var stateInput = document.getElementById("inputState");
 var searchBtn = document.getElementById("searchBtnMain");
 var formMain = document.getElementById("formMain");
-
+//fetch for restaurant array for city and state once search button is clicked
 function getRestaurants() {
   const options = {
     method: "GET",
@@ -56,7 +56,7 @@ searchBtn.addEventListener("click", function () {
   informationPage.classList.remove("hidden");
   testing.classList.add("hidden");
 });
-//**** function to grab info from trip advisor restaurant list and search videos for the top 5 on the list by name and city
+//**** function to grab info from restaurant list and search videos for them based on name and city.
 function fetchYoutubeVideo(restaurant, city) {
   const options = {
     method: "GET",
@@ -77,48 +77,67 @@ function fetchYoutubeVideo(restaurant, city) {
     .catch((err) => console.error(err));
 }
 
-//**** creates cards that contain restaurants pic name price range open status
+//**** creates cards that contain restaurants info
 function createCards(restaurantsArray) {
   loadingIcon.setAttribute("class", "hidden");
   console.log(restaurantsArray);
   searchDiv = document.getElementById("search-page");
   containerWrapDiv = document.createElement("div");
   containerWrapDiv.setAttribute("class", "container-wrapper");
-  //foreach loop to create cards and append all drilled info onto them. may need to put picture and title into one div and info into another.
+  //foreach loop to create cards and append all drilled info onto them
   restaurantsArray.forEach((restaurant) => {
     const card = document.createElement("div");
     card.setAttribute("class", "container");
-    //website preview
+    //website URL
     const restWeb = document.createElement("h3");
     restWeb.setAttribute("class", "restWeb");
-    restWeb.innerText = restaurant.website;
+    restWeb.innerText = "Website: " + restaurant.website;
     //name
     const restName = document.createElement("h3");
     restName.setAttribute("class", "restName");
     restName.innerText = restaurant.restaurantName;
-    //rating in stars
+    //Phone number
     const restPhone = document.createElement("h3");
     restPhone.setAttribute("class", "restPhone");
-    restPhone.innerText = restaurant.phone;
-    //price range
+    restPhone.innerText = "Phone Number: " + restaurant.phone;
+    //address
     const restAdd = document.createElement("h3");
     restAdd.setAttribute("class", "restPrice");
-    restAdd.innerText = restaurant.address;
+    restAdd.innerText = "Address: " + restaurant.address;
     //type of food
     const restType = document.createElement("h3");
     restType.setAttribute("class", "restType");
-    restType.innerText = restaurant.cuisineType;
-    //open status
+    restType.innerText = "Cuisine Type: " + restaurant.cuisineType;
+    //hours of operation
     const restOpen = document.createElement("h3");
     restOpen.setAttribute("class", "restOpen");
-    restOpen.innerText = restaurant.hoursInterval;
-    //appending to card div and then to search div
-    card.append(restWeb);
-    card.append(restName);
-    card.append(restPhone);
-    card.append(restAdd);
-    card.append(restType);
-    card.append(restOpen);
+    restOpen.innerText = "Hours: " + restaurant.hoursInterval;
+    //appending to div, card, and page
+    //logo div
+    const cardLogoDiv = document.createElement("div");
+    cardLogoDiv.setAttribute("class", "cardLogoDiv");
+    const BiteBudLogo = document.createElement("h3");
+    BiteBudLogo.setAttribute("class", "BiteBudLogo");
+    BiteBudLogo.innerText = "BiteBud";
+    cardLogoDiv.append(BiteBudLogo);
+    card.append(cardLogoDiv);
+
+    //rest info div
+    const restInfoDiv = document.createElement("div");
+    restInfoDiv.setAttribute("class", "restInfoDiv");
+    restInfoDiv.append(restName);
+    restInfoDiv.append(restType);
+    restInfoDiv.append(restOpen);
+    restInfoDiv.append(restWeb);
+    restInfoDiv.append(restPhone);
+    restInfoDiv.append(restAdd);
+
+    card.append(restInfoDiv);
+
+    //youtube Div for youtube videos
+    const youtubeDiv = document.createElement("div");
+    youtubeDiv.setAttribute("class", "youtubeDiv");
+    card.append(youtubeDiv);
 
     searchDiv.append(containerWrapDiv);
     containerWrapDiv.append(card);

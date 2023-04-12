@@ -1,9 +1,7 @@
 var mainPage = document.querySelector("#main-page");
 var informationPage = document.querySelector("#search-page");
 var testing = document.querySelector("#mainPageInfo");
-function goBack() {
-  window.location.href = "index.html";
-}
+
 var loadingIcon = document.querySelector("#loadingIcon");
 
 //****dropdown logic for navbar
@@ -30,24 +28,21 @@ var stateInput = document.getElementById("inputState");
 var searchBtn = document.getElementById("searchBtnMain");
 var formMain = document.getElementById("formMain");
 
-function getRestaurants() {
-  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": "cc6b170988mshf1759b35552ccc1p19f93ejsn2c2fce67394d",
-      "X-RapidAPI-Host": "restaurants-near-me-usa.p.rapidapi.com",
-    },
-  };
+function getRestaurants(){
+const options = {
+  method: 'GET',
+  headers: {
+      'X-RapidAPI-Key': 'cc6b170988mshf1759b35552ccc1p19f93ejsn2c2fce67394d',
+      'X-RapidAPI-Host': 'restaurants-near-me-usa.p.rapidapi.com'
+  }
+};
 
-  fetch(
-    `https://restaurants-near-me-usa.p.rapidapi.com/restaurants/location/state/${stateInput.value}/city/${cityInput.value}/0`,
-    options
-  )
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((err) => console.error(err));
+fetch(`https://restaurants-near-me-usa.p.rapidapi.com/restaurants/location/state/${stateInput.value}/city/${cityInput.value}/0`, options)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
   console.log(stateInput);
-}
+};
 
 //**** search bar button event listener to start function chain and to hide main page
 searchBtn.addEventListener("click", function () {

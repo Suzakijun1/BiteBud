@@ -19,6 +19,9 @@ header {
 }
 body{
     background-color: #b8c7f2;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
 }
 
 .navBar {

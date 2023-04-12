@@ -1,7 +1,9 @@
 var mainPage = document.querySelector("#main-page");
 var informationPage = document.querySelector("#search-page");
 var testing = document.querySelector("#mainPageInfo");
-
+function goBack() {
+  window.location.href = "index.html"; 
+}
 var loadingIcon = document.querySelector("#loadingIcon");
 
 //****dropdown logic for navbar
@@ -29,7 +31,7 @@ var formMain = document.getElementById("formMain");
 
 //**** search bar button event listener to start function chain and to hide main page
 searchBtn.addEventListener("click", function () {
-  fetchLocationId();
+  // fetchLocationId();
   mainPage.classList.add("hidden");
   informationPage.classList.remove("hidden");
   testing.classList.add("hidden");

@@ -90,12 +90,14 @@ function fetchLocationId2(functionid) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data.data.data);
-      // createCards(data.data.data); *commented out for future changes
-      console.log(data.data.data);
+      var topFiveArray = [];
+
       for (var i = 0; i < 5; i++) {
-        console.log(data.data.data[i]);
-        console.log(data.data.data[i].name);
-        console.log(data.data.data[i].parentGeoName);
+        topFiveArray.push(data.data.data[i]);
+      }
+      createCards(topFiveArray);
+
+      for (var i = 0; i < 5; i++) {
         fetchYoutubeVideo(
           data.data.data[i].name,
           data.data.data[i].parentGeoName
@@ -105,6 +107,45 @@ function fetchLocationId2(functionid) {
     .catch((err) => console.error(err));
 }
 //**** creates cards that contain restaurants pic name price range open status
-function createCards(restaurants) {
-  restaurants.forEach((restaurant) => {});
+function createCards(topFiveArray) {
+  console.log(topFiveArray);
+  searchDiv = document.getElementById("search-page");
+  topFiveArray.forEach((restaurant) => {
+    const card = document.createElement("div");
+    card.setAttribute("class", "restaurantCard");
+
+    const restHeroImg = document.createElement("img");
+    restHeroImg.setAttribute("src", restaurant.heroImgUrl);
+    restHeroImg.setAttribute("class", "restHeroImg");
+    restHeroImg.setAttribute("alt", "Restaurant image");
+
+    const restName = document.createElement("h3");
+    restName.setAttribute("class", "restName");
+    restName.innerText = restaurant.name;
+
+    const restRating = document.createElement("h3");
+    restRating.setAttribute("class", "restRating");
+    restRating.innerText = restaurant.averageRating;
+
+    const restPrice = document.createElement("h3");
+    restPrice.setAttribute("class", "restPrice");
+    restPrice.innerText = restaurant.priceTag;
+
+    const restType = document.createElement("h3");
+    restType.setAttribute("class", "restType");
+    restType.innerText = restaurant.establishmentTypeAndCuisineTags[0];
+
+    const restOpen = document.createElement("h3");
+    restOpen.setAttribute("class", "restOpen");
+    restOpen.innerText = restaurant.currentOpenStatusText;
+
+    card.append(restHeroImg);
+    card.append(restName);
+    card.append(restRating);
+    card.append(restPrice);
+    card.append(restType);
+    card.append(restOpen);
+
+    searchDiv.append(card);
+  });
 }

@@ -37,10 +37,11 @@ const options = {
   }
 };
 
-fetch(`https://restaurants-near-me-usa.p.rapidapi.com/restaurants/location/state/${stateInput.value}/city/${cityInput.value}/0`, options)
+fetch(`https://restaurants-near-me-usa.p.rapidapi.com/restaurants/location/state/${stateInput}/city/${cityInput.value}/0`, options)
   .then(response => response.json())
   .then(data => console.log(data))
   .catch(err => console.error(err));
+  console.log(stateInput);
 };
 
 //**** search bar button event listener to start function chain and to hide main page

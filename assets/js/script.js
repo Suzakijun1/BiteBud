@@ -41,11 +41,6 @@ function fetchLocationId() {
   };
 
   fetch(
-
-    `https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchLocation?query=${locationInput}`,
-    options,
-    (loadingIcon.style.display = "block")
-
     `https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchLocation?query=${searchInput.value}`,
     options
 
@@ -53,6 +48,7 @@ function fetchLocationId() {
     .then((response) => response.json())
     .then((data) => {
       console.log(data.data[0].locationId);
+      loadingIcon.style.display = "block"
       //send to function here with (data.data[0].locationId)
       fetchLocationId2(data.data[0].locationId);
     })
@@ -77,7 +73,7 @@ function fetchYoutubeVideo(restaurant, city) {
       "X-RapidAPI-Host": "youtube-data8.p.rapidapi.com",
     },
   };
-
+}
 
 
 function fetchLocationId2(functionid) {
@@ -96,7 +92,7 @@ function fetchLocationId2(functionid) {
     `https://youtube-data8.p.rapidapi.com/search/?q=${restaurant} ${city}&hl=en&gl=US`,
 
     options
-  )
+  ))
     .then((response) => response.json())
     .then((response) => {
       console.log(response.contents[0].video);

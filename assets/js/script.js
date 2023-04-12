@@ -1,7 +1,12 @@
 var mainPage = document.querySelector("#main-page");
 var informationPage = document.querySelector("#search-page");
 var testing = document.querySelector("#mainPageInfo");
+
+var loadingIcon = document.querySelector("#loadingIcon");
+
+
 //****dropdown logic for navbar
+
 function toggleDropdown(event) {
   event.preventDefault();
   var dropdownContent = event.target.nextElementSibling;
@@ -34,9 +39,16 @@ function fetchLocationId() {
       "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
     },
   };
+
   fetch(
+
+    `https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchLocation?query=${locationInput}`,
+    options,
+    (loadingIcon.style.display = "block")
+
     `https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchLocation?query=${searchInput.value}`,
     options
+
   )
     .then((response) => response.json())
     .then((data) => {
@@ -44,7 +56,10 @@ function fetchLocationId() {
       //send to function here with (data.data[0].locationId)
       fetchLocationId2(data.data[0].locationId);
     })
-    .catch((err) => console.error(err));
+    .catch((err) => console.error(err))
+    .finally(() => {
+      loadingIcon.style.display = "none";
+    });
 }
 //**** search bar button event listener to start function chain and to hide main page
 searchBtn.addEventListener("click", function () {
@@ -63,8 +78,23 @@ function fetchYoutubeVideo(restaurant, city) {
     },
   };
 
+
+
+function fetchLocationId2(functionid) {
+  console.log(locationInput);
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "b409b7abe1mshd693097ae9fc635p1c58ffjsn0debf85713b0",
+      "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
+    },
+  };
+  fetch(
+    `https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchRestaurants?locationId=${functionid}`,
+
   fetch(
     `https://youtube-data8.p.rapidapi.com/search/?q=${restaurant} ${city}&hl=en&gl=US`,
+
     options
   )
     .then((response) => response.json())
@@ -150,3 +180,4 @@ function createCards(topFiveArray) {
     searchDiv.append(card);
   });
 }
+

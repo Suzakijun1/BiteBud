@@ -132,8 +132,11 @@ div.list-container{
     margin-top: 10px;
   }
 
-.hello {
-  height: 100%;
-  width: 100%;
 
-}
+  #loadingIcon {
+    display: flex;
+    background-repeat: no-repeat;
+    background-position:center; 
+    width: 50px;
+    height: 50px;
+  }

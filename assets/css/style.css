@@ -181,7 +181,7 @@ div.list-container{
     margin-bottom: 20px;
     display: flex;
     flex-direction: row;
-    box-shadow: -2px 5px 10px #010200;
+    box-shadow: -2px 3px 10px #010200;
   }
 
   .hidden{

@@ -9,44 +9,30 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <title>BiteBud</title>
 </head>
-
 <body class="min-h-screen">
+
   <div class="flex flex-col min-h-full"></div>
   <header>
-
     <div class="navBar">
       <div class="appName">
         <button id="logoMain" onclick="location.reload()">BiteBud</button>
       </div>
-
       <div>
         <ul class="flex items-center space-x-6">
           <li class="dropdown">
-            <button class="dropbtn" onclick="toggleDropdown(event)">Favorites❤️</button>
-            <div class="dropdown-content">
-              <a href="#">Option 1</a>
-              <a href="#">Option 2</a>
-              <a href="#">Option 3</a>
-            </div>
-          </li>
-          <li class="dropdown">
             <button class="dropbtn" onclick="toggleDropdown(event)">Recent Searches</button>
             <div id="testing" class="dropdown-content">
-              <!-- <a href="#">Option 1</a>
-              <a href="#">Option 2</a>
-              <a href="#">Option 3</a> -->
             </div>
           </li>
         </ul>
       </div>
-
   </header>
   <main class="flex-grow">
     <!-- main page with search bar for city -->
     <section id="mainPage">
       <!-- section for restaurant info and youtube to be displayed -->
       <section id="mainPageInfo">
-        <h2>Input a city name and select a state to receive information on nearby bites!</h2>
+        <h2>Input a city name and select a state to receive information on nearby attractions and bites!</h2>
       </section>
       <section id="main-page">
         <div class="relative h-screen">
@@ -113,7 +99,7 @@
                   <option value="WY">WY</option>
                 </select>
                 <button id="searchBtnMain"
-                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-lg"> Search
+                  class="bg-blue-500 hover:bg-blue-700 text-green font-bold py-2 px-4 rounded-r-lg"> Search
                 </button>
               </form>
             </div>

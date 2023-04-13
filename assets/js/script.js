@@ -52,13 +52,15 @@ async function getRestaurants() {
 
 //**** search bar button event listener to start function chain and to hide main page
 searchBtn.addEventListener("click", function () {
-  getResults()
+  getResults();
   mainPage.classList.add("hidden");
   informationPage.classList.remove("hidden");
   testing.classList.add("hidden");
 });
 //**** function to grab info from restaurant list and search videos for them based on name and city.
 async function fetchYoutubeVideo(city) {
+async function fetchYoutubeVideo(restaurantName, city) {
+  console.log("RES NAME : ", restaurantName);
   const options = {
     method: "GET",
     headers: {
@@ -66,37 +68,45 @@ async function fetchYoutubeVideo(city) {
       "X-RapidAPI-Host": "youtube-data8.p.rapidapi.com",
     },
   };
-  console.log(`https://youtube-data8.p.rapidapi.com/search/?q=${city}&hl=en&gl=US`)
+  );
+
   const response = await fetch(
     `https://youtube-data8.p.rapidapi.com/search/?q=funthingstodoin${city} ${stateInput.value}&hl=en&gl=US`,
     options
   );
- const data = await response.json();
- console.log(data.contents);
- return data.contents
+  const data = await response.json();
+  console.log(data.contents);
+  return data.contents;
 }
 
 // delay function to delay requests to youtube api
-const delay = (ms) => new Promise((resolve)=> setTimeout(resolve, ms))
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const getResults = async () => {
   try {
     const restaurantsArray = await getRestaurants();
     let videoDataArray = [];
     // createCards(restaurantsArray)
+
     for(const restaurant of restaurantsArray){
       const videoData = await fetchYoutubeVideo(restaurant.cityName)
       videoDataArray.push(videoData)
       await delay(200)
+      
+    for (const restaurant of restaurantsArray) {
+      const videoData = await fetchYoutubeVideo(
+        restaurant.restaurantName,
+        restaurant.cityName
+      );
+      videoDataArray.push(videoData);
+      await delay(200);
     }
 
-    createCards(restaurantsArray, videoDataArray)
-
+    createCards(restaurantsArray, videoDataArray);
   } catch (error) {
     console.log(error);
   }
 };
-
 
 //**** creates cards that contain restaurants info
 function createCards(restaurantsArray, videoData) {
@@ -121,6 +131,7 @@ function createCards(restaurantsArray, videoData) {
     //Phone number
     const restPhone = document.createElement("h3");
     restPhone.setAttribute("class", "restPhone");
+    restPhone.setAttribute("href", "tel:" + restaurant.phone);
     restPhone.innerText = "Phone Number: " + restaurant.phone;
     //address
     const restAdd = document.createElement("h3");
@@ -156,9 +167,14 @@ function createCards(restaurantsArray, videoData) {
 
     card.append(restInfoDiv);
 
+    const attractionsDiv = document.createElement("div");
+    attractionsDiv.setAttribute("class", "attractionsDiv");
+    attractionsDiv.innerText = "Attractions";
+
     //youtube Div for youtube videos
     const youtubeDiv = document.createElement("div");
     youtubeDiv.setAttribute("class", "youtubeDiv");
+
     const iframeForVid = document.createElement("iframe")
     const video = videoData[index]
     const { videoId } = video[index].video
@@ -167,19 +183,41 @@ function createCards(restaurantsArray, videoData) {
     iframeForVid.setAttribute("width", "200")
     iframeForVid.setAttribute("height", "200")
     youtubeDiv.append(iframeForVid)
+
+    const iframeForVid = document.createElement("iframe");
+    const video = videoData[index];
+    const { videoId } = video[0].video;
+    console.log("Items", videoId);
+    iframeForVid.setAttribute(
+      "src",
+      `https://www.youtube.com/embed/${videoId}`
+    );
+    iframeForVid.setAttribute("width", "250");
+    iframeForVid.setAttribute("height", "200");
+    youtubeDiv.append(attractionsDiv);
+    youtubeDiv.append(iframeForVid);
+
     card.append(youtubeDiv);
     // containerWrapDiv.append(youtubeDiv)
     searchDiv.append(containerWrapDiv);
     containerWrapDiv.append(card);
   });
-
-
 }
 
 async function narrowDowResults(videos, restaurantName) {
   const lowercaseRestaurantName = restaurantName.toLowerCase();
 
   for (const videoArr of videos) {
-    console.log("test", videoArr.video)
+    console.log("test", videoArr.video);
   }
 }
+
+//retrieve input element
+searchBtn.addEventListener("click", function () {
+  const inputStateLocal = document.getElementById("inputState");
+  const state = inputStateLocal.value;
+  localStorage.setItem("State", state);
+  const inputCityLocal = document.getElementById("inputCity");
+  const city = inputCityLocal.value;
+  localStorage.setItem("City", city);
+});

@@ -2,7 +2,6 @@
 
 Bite-Bud is a web application that allows users to search for local restaurants and attractions in any city and state of their choice. The application retrieves data from third-party APIs to provide users with relevant information about nearby restaurants and attractions.
 
-src="./assets/images/mainPage.png"
 
 ## Description
 
@@ -17,6 +16,10 @@ No installation is required to use Bite-Bud. To use the application, simply ente
 ## Live Page
 
 Click ____ to view the live page.
+
+![Screenshot (40)](https://user-images.githubusercontent.com/124737955/231860059-f44551ef-e2c2-429e-bbe3-2f45adb40a4a.png)
+
+![Screenshot (41)](https://user-images.githubusercontent.com/124737955/231860069-032970e4-078c-4d85-870d-4df268804b06.png)
 
 ## Contributors
 

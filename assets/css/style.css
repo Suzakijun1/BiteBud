@@ -181,6 +181,7 @@ div.list-container{
     margin-bottom: 20px;
     display: flex;
     flex-direction: row;
+    box-shadow: -2px 5px 10px #010200;
   }
 
   .hidden{
@@ -203,6 +204,9 @@ div.list-container{
     text-align: center;
     width: 700px;
     color: #dff1e5;
+    margin-top: 7px;
+    margin-left: 5px;
+    scroll-margin-right: 5px;
   }
 
   .restName{

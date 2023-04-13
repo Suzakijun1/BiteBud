@@ -221,3 +221,9 @@ div.list-container{
   .restWeb{
     color: rgb(127, 201, 177);
   }
+
+  option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }

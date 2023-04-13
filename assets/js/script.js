@@ -62,7 +62,7 @@ async function fetchYoutubeVideo(city) {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "60f9695e33msh9c4dc75800243dcp13b631jsn7c95babb35ae",
+      "X-RapidAPI-Key": "b409b7abe1mshd693097ae9fc635p1c58ffjsn0debf85713b0",
       "X-RapidAPI-Host": "youtube-data8.p.rapidapi.com",
     },
   };

@@ -2,7 +2,7 @@
 
 ## description
 
-Bite-Bud allows users to search a city of any choice and receive a list of nearby restaurants instantly. Info about the restaurant and it's menu is presented to the user. See first hand experiences and location atmosphere with youtube videos that are displayed with the listed restaurant.
+Bite-Bud allows users to search a city and state of any choice and receive a list of nearby restaurants instantly. Info about the restaurant such as cuisine type, local hours, and a link to an available website is presented to the user. Secondly, you would also be returned a series of youtube videos for attractions based on the same user inputted location.
 
 ## Usage
 

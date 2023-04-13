@@ -193,6 +193,18 @@ async function narrowDowResults(videos, restaurantName) {
 const inputCity = document.getElementById("inputCity");
 const dropdownButton = document.querySelector("#testing");
 
+// Load stored past cities on page load
+document.addEventListener("DOMContentLoaded", function () {
+  dropdownButton.innerHTML = "";
+  const storedCities = JSON.parse(localStorage.getItem("Cities")) || [];
+  for (let i = 0; i < storedCities.length; i++) {
+    const option = document.createElement("option");
+    option.text = storedCities[i];
+    dropdownButton.append(option);
+  }
+});
+
+// Upon clicking the search Button, the dropdown menu will populate new information
 searchBtn.addEventListener("click", function () {
   const city = inputCity.value;
   let cities = JSON.parse(localStorage.getItem("Cities")) || [];

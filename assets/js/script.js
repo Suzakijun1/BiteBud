@@ -168,7 +168,6 @@ function createCards(restaurantsArray, videoData) {
     iframeForVid.setAttribute("height", "200")
     youtubeDiv.append(iframeForVid)
     card.append(youtubeDiv);
-    // containerWrapDiv.append(youtubeDiv)
     searchDiv.append(containerWrapDiv);
     containerWrapDiv.append(card);
   });

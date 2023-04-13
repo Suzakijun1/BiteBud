@@ -63,7 +63,7 @@ async function fetchYoutubeVideo(restaurantName, city) {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "cc6b170988mshf1759b35552ccc1p19f93ejsn2c2fce67394d",
+      "X-RapidAPI-Key": "60f9695e33msh9c4dc75800243dcp13b631jsn7c95babb35ae",
       "X-RapidAPI-Host": "youtube-data8.p.rapidapi.com",
     },
   };
@@ -174,7 +174,7 @@ function createCards(restaurantsArray, videoData) {
       "src",
       `https://www.youtube.com/embed/${videoId}`
     );
-    iframeForVid.setAttribute("width", "200");
+    iframeForVid.setAttribute("width", "250");
     iframeForVid.setAttribute("height", "200");
     youtubeDiv.append(iframeForVid);
     card.append(youtubeDiv);

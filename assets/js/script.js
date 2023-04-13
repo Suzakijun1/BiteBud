@@ -58,8 +58,7 @@ searchBtn.addEventListener("click", function () {
   testing.classList.add("hidden");
 });
 //**** function to grab info from restaurant list and search videos for them based on name and city.
-async function fetchYoutubeVideo(restaurantName, city) {
-  console.log("RES NAME : ", restaurantName);
+async function fetchYoutubeVideo(city) {
   const options = {
     method: "GET",
     headers: {
@@ -68,10 +67,10 @@ async function fetchYoutubeVideo(restaurantName, city) {
     },
   };
   console.log(
-    `https://youtube-data8.p.rapidapi.com/search/?q=${restaurantName} ${city}&hl=en&gl=US`
+    `https://youtube-data8.p.rapidapi.com/search/?q=funthingstodoin${city} ${stateInput.value}&hl=en&gl=US`
   );
   const response = await fetch(
-    `https://youtube-data8.p.rapidapi.com/search/?q=${restaurantName} ${city}&hl=en&gl=US`,
+    `https://youtube-data8.p.rapidapi.com/search/?q=funthingstodoin${city} ${stateInput.value}&hl=en&gl=US`,
     options
   );
   const data = await response.json();
@@ -86,12 +85,8 @@ const getResults = async () => {
   try {
     const restaurantsArray = await getRestaurants();
     let videoDataArray = [];
-    // createCards(restaurantsArray)
     for (const restaurant of restaurantsArray) {
-      const videoData = await fetchYoutubeVideo(
-        restaurant.restaurantName,
-        restaurant.cityName
-      );
+      const videoData = await fetchYoutubeVideo(restaurant.cityName);
       videoDataArray.push(videoData);
       await delay(200);
     }
@@ -174,12 +169,9 @@ function createCards(restaurantsArray, videoData) {
     youtubeDiv.setAttribute("class", "youtubeDiv");
     const iframeForVid = document.createElement("iframe");
     const video = videoData[index];
-    const { videoId } = video[0].video;
+    const { videoId } = video[index].video;
     console.log("Items", videoId);
-    iframeForVid.setAttribute(
-      "src",
-      `https://www.youtube.com/embed/${videoId}`
-    );
+    iframeForVid.setAttribute("src", `https://www.youtube.com/embed/${videoId}`);
     iframeForVid.setAttribute("width", "250");
     iframeForVid.setAttribute("height", "200");
     youtubeDiv.append(attractionsDiv);

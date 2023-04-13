@@ -185,7 +185,6 @@ function createCards(restaurantsArray, videoData) {
     youtubeDiv.append(attractionsDiv);
     youtubeDiv.append(iframeForVid);
     card.append(youtubeDiv);
-    // containerWrapDiv.append(youtubeDiv)
     searchDiv.append(containerWrapDiv);
     containerWrapDiv.append(card);
   });

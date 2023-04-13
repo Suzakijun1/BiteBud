@@ -192,12 +192,24 @@ async function narrowDowResults(videos, restaurantName) {
   }
 }
 
-//retrieve input element
+const inputCity = document.getElementById("inputCity");
+const dropdownButton = document.querySelector("#testing");
+
 searchBtn.addEventListener("click", function () {
-  const inputStateLocal = document.getElementById("inputState");
-  const state = inputStateLocal.value;
-  localStorage.setItem("State", state);
-  const inputCityLocal = document.getElementById("inputCity");
-  const city = inputCityLocal.value;
-  localStorage.setItem("City", city);
+  const city = inputCity.value;
+  let cities = JSON.parse(localStorage.getItem("Cities")) || [];
+
+  if (!cities.includes(city)) {
+    cities.push(city);
+    localStorage.setItem("Cities", JSON.stringify(cities));
+  }
+
+  dropdownButton.innerHTML = "";
+  const storedCities = JSON.parse(localStorage.getItem("Cities")) || [];
+
+  for (let i = 0; i < storedCities.length; i++) {
+    const option = document.createElement("option");
+    option.text = storedCities[i];
+    dropdownButton.append(option);
+  }
 });

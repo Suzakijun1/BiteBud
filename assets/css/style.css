@@ -202,12 +202,18 @@ div.list-container{
   .restInfoDiv{
     text-align: center;
     width: 700px;
-    color: #b8c7f2;
-  
-
+    color: #dff1e5;
   }
 
   .restName{
     font-size: 25px;
-    color: aliceblue;
+    color: rgb(144, 237, 155);
+  }
+
+  .restPhone, .restAdd{
+    display: block;
+  }
+
+  .restWeb{
+    color: rgb(127, 201, 177);
   }

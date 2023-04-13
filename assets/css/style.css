@@ -6,6 +6,7 @@
 
 }
 header {
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   background-color: #2d3347;
@@ -22,12 +23,19 @@ body{
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      background-image: url(https://images.unsplash.com/photo-1619120238346-978e07731e77?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTB8fHxlbnwwfHx8fA%3D%3D&w=1000&q=80);
+      background-size: 1903px 1300px ;
 }
 
 .navBar {
   display: flex;
   width: 100%;
   justify-content: space-between;
+}
+
+#searchBtnMain {
+  background-color: #404040;
+  color: #83cc16;
 }
 
 
@@ -99,6 +107,7 @@ div.list-container{
     border-top: #84cc16 2px solid;
     background: linear-gradient(to top, rgb(59, 54, 54), rgb(88, 102, 95));
     margin-top: auto;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
   }
 
   #mainImage {

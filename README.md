@@ -1,23 +1,31 @@
-# Bite-Bud
+## Bite-Bud
 
-## description
+Bite-Bud is a web application that allows users to search for local restaurants and attractions in any city and state of their choice. The application retrieves data from third-party APIs to provide users with relevant information about nearby restaurants and attractions.
 
-Bite-Bud allows users to search a city and state of any choice and receive a list of nearby restaurants instantly. Info about the restaurant such as cuisine type, local hours, and a link to an available website is presented to the user. Secondly, you would also be returned a series of youtube videos for attractions based on the same user inputted location.
+src="./assets/images/mainPage.png"
+
+## Description
+
+Bite-Bud uses the Google Places API to search for nearby restaurants based on the user's inputted location. The application returns information such as the restaurant's name, address, phone number, cuisine type, and hours of operation. The application also provides a link to the restaurant's website, if available.
+
+In addition to the restaurant search, Bite-Bud also uses the YouTube API to search for relevant attraction videos based on the user's inputted location. These videos provide users with more information about local attractions and events.
 
 ## Usage
 
-No installation required.
+No installation is required to use Bite-Bud. To use the application, simply enter the city and state of your choice in the search bar and click the "Search" button. Bite-Bud will retrieve and display a list of local restaurants and YouTube videos related to the location you entered.
 
-Search any city name and hit search. A page containing local restaurants will be displayed along with related YouTube videos.
+## Live Page
 
-## view <a href="">Live page!</a>
-
- <img src="">
+Click ____ to view the live page.
 
 ## Contributors
 
-<a href="">Jesse Emerson, </a> <a href="">Youlormans Hilaire, </a> <a href="">Alan Pereyro, </a> <a href="">Trent Stanley, </a> <a href="">Dylan Yong</a>
+* Jesse Emerson
+* Youlormans Hilaire
+* Alan Pereyro
+* Trent Stanley
+* Dylan Yong
 
 ## License
 
-MIT license.
+Bite-Bud is licensed under the MIT License. See the LICENSE file for more information.

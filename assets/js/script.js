@@ -28,7 +28,9 @@ var stateInput = document.getElementById("inputState");
 var searchBtn = document.getElementById("searchBtnMain");
 var formMain = document.getElementById("formMain");
 //fetch for restaurant array for city and state once search button is clicked
-function getRestaurants() {
+let loading = false;
+
+async function getRestaurants() {
   const options = {
     method: "GET",
     headers: {
@@ -36,28 +38,28 @@ function getRestaurants() {
       "X-RapidAPI-Host": "restaurants-near-me-usa.p.rapidapi.com",
     },
   };
-  fetch(
+  const response = await fetch(
     `https://restaurants-near-me-usa.p.rapidapi.com/restaurants/location/state/${stateInput.value}/city/${cityInput.value}/0`,
     options
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      createCards(data.restaurants);
-    })
-    .catch((err) => console.error(err));
-  console.log(stateInput);
+  );
+  const data = await response.json();
+  const { restaurants } = data;
+  const fiveResults = restaurants.slice(0, 5);
+  console.log(fiveResults);
+
+  return fiveResults;
 }
 
 //**** search bar button event listener to start function chain and to hide main page
 searchBtn.addEventListener("click", function () {
-  getRestaurants();
+  getResults()
   mainPage.classList.add("hidden");
   informationPage.classList.remove("hidden");
   testing.classList.add("hidden");
 });
 //**** function to grab info from restaurant list and search videos for them based on name and city.
-function fetchYoutubeVideo(restaurant, city) {
+async function fetchYoutubeVideo(restaurantName, city) {
+  console.log("RES NAME : ", restaurantName)
   const options = {
     method: "GET",
     headers: {
@@ -65,27 +67,48 @@ function fetchYoutubeVideo(restaurant, city) {
       "X-RapidAPI-Host": "youtube-data8.p.rapidapi.com",
     },
   };
-  fetch(
-    `https://youtube-data8.p.rapidapi.com/search/?q=${restaurant} ${city}&hl=en&gl=US`,
-
+  console.log(`https://youtube-data8.p.rapidapi.com/search/?q=${restaurantName} ${city}&hl=en&gl=US`)
+  const response = await fetch(
+    `https://youtube-data8.p.rapidapi.com/search/?q=${restaurantName} ${city}&hl=en&gl=US`,
     options
-  )
-    .then((response) => response.json())
-    .then((response) => {
-      console.log(response.contents[0].video);
-    })
-    .catch((err) => console.error(err));
+  );
+ const data = await response.json();
+ console.log(data.contents);
+ return data.contents
 }
 
+// delay function to delay requests to youtube api
+const delay = (ms) => new Promise((resolve)=> setTimeout(resolve, ms))
+
+const getResults = async () => {
+  try {
+    const restaurantsArray = await getRestaurants();
+    let videoDataArray = [];
+    // createCards(restaurantsArray)
+    for(const restaurant of restaurantsArray){
+      const videoData = await fetchYoutubeVideo(restaurant.restaurantName, restaurant.cityName)
+      videoDataArray.push(videoData)
+      await delay(200)
+    }
+
+    createCards(restaurantsArray, videoDataArray)
+
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
 //**** creates cards that contain restaurants info
-function createCards(restaurantsArray) {
+function createCards(restaurantsArray, videoData) {
   loadingIcon.setAttribute("class", "hidden");
   console.log(restaurantsArray);
   searchDiv = document.getElementById("search-page");
   containerWrapDiv = document.createElement("div");
   containerWrapDiv.setAttribute("class", "container-wrapper");
   //foreach loop to create cards and append all drilled info onto them
-  restaurantsArray.forEach((restaurant) => {
+
+  restaurantsArray.forEach((restaurant, index) => {
     const card = document.createElement("div");
     card.setAttribute("class", "container");
     //website URL
@@ -137,9 +160,27 @@ function createCards(restaurantsArray) {
     //youtube Div for youtube videos
     const youtubeDiv = document.createElement("div");
     youtubeDiv.setAttribute("class", "youtubeDiv");
+    const iframeForVid = document.createElement("iframe")
+    const video = videoData[index]
+    const { videoId } = video[0].video
+    console.log("Items", videoId)
+    iframeForVid.setAttribute("src", `https://www.youtube.com/embed/${videoId}`)
+    iframeForVid.setAttribute("width", "200")
+    iframeForVid.setAttribute("height", "200")
+    youtubeDiv.append(iframeForVid)
     card.append(youtubeDiv);
-
+    // containerWrapDiv.append(youtubeDiv)
     searchDiv.append(containerWrapDiv);
     containerWrapDiv.append(card);
   });
+
+
+}
+
+async function narrowDowResults(videos, restaurantName) {
+  const lowercaseRestaurantName = restaurantName.toLowerCase();
+
+  for (const videoArr of videos) {
+    console.log("test", videoArr.video)
+  }
 }

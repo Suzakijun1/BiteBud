@@ -58,6 +58,7 @@ searchBtn.addEventListener("click", function () {
   testing.classList.add("hidden");
 });
 //**** function to grab info from restaurant list and search videos for them based on name and city.
+async function fetchYoutubeVideo(city) {
 async function fetchYoutubeVideo(restaurantName, city) {
   console.log("RES NAME : ", restaurantName);
   const options = {
@@ -67,11 +68,10 @@ async function fetchYoutubeVideo(restaurantName, city) {
       "X-RapidAPI-Host": "youtube-data8.p.rapidapi.com",
     },
   };
-  console.log(
-    `https://youtube-data8.p.rapidapi.com/search/?q=${restaurantName} ${city}&hl=en&gl=US`
   );
+
   const response = await fetch(
-    `https://youtube-data8.p.rapidapi.com/search/?q=${restaurantName} ${city}&hl=en&gl=US`,
+    `https://youtube-data8.p.rapidapi.com/search/?q=funthingstodoin${city} ${stateInput.value}&hl=en&gl=US`,
     options
   );
   const data = await response.json();
@@ -87,6 +87,12 @@ const getResults = async () => {
     const restaurantsArray = await getRestaurants();
     let videoDataArray = [];
     // createCards(restaurantsArray)
+
+    for(const restaurant of restaurantsArray){
+      const videoData = await fetchYoutubeVideo(restaurant.cityName)
+      videoDataArray.push(videoData)
+      await delay(200)
+      
     for (const restaurant of restaurantsArray) {
       const videoData = await fetchYoutubeVideo(
         restaurant.restaurantName,
@@ -115,23 +121,21 @@ function createCards(restaurantsArray, videoData) {
     const card = document.createElement("div");
     card.setAttribute("class", "container");
     //website URL
-    const restWeb = document.createElement("a");
-    restWeb.setAttribute("class", "restWeb infoHover");
-    restWeb.setAttribute("href", restaurant.website);
-    restWeb.setAttribute("target", "_blank");
-    restWeb.innerText = "~ View Restaurant Website ~";
+    const restWeb = document.createElement("h3");
+    restWeb.setAttribute("class", "restWeb");
+    restWeb.innerText = "Website: " + restaurant.website;
     //name
     const restName = document.createElement("h3");
     restName.setAttribute("class", "restName");
     restName.innerText = restaurant.restaurantName;
     //Phone number
-    const restPhone = document.createElement("a");
+    const restPhone = document.createElement("h3");
     restPhone.setAttribute("class", "restPhone");
     restPhone.setAttribute("href", "tel:" + restaurant.phone);
     restPhone.innerText = "Phone Number: " + restaurant.phone;
     //address
     const restAdd = document.createElement("h3");
-    restAdd.setAttribute("class", "restAdd");
+    restAdd.setAttribute("class", "restPrice");
     restAdd.innerText = "Address: " + restaurant.address;
     //type of food
     const restType = document.createElement("h3");
@@ -157,9 +161,9 @@ function createCards(restaurantsArray, videoData) {
     restInfoDiv.append(restName);
     restInfoDiv.append(restType);
     restInfoDiv.append(restOpen);
+    restInfoDiv.append(restWeb);
     restInfoDiv.append(restPhone);
     restInfoDiv.append(restAdd);
-    restInfoDiv.append(restWeb);
 
     card.append(restInfoDiv);
 
@@ -167,11 +171,19 @@ function createCards(restaurantsArray, videoData) {
     attractionsDiv.setAttribute("class", "attractionsDiv");
     attractionsDiv.innerText = "Attractions";
 
-    
-
     //youtube Div for youtube videos
     const youtubeDiv = document.createElement("div");
     youtubeDiv.setAttribute("class", "youtubeDiv");
+
+    const iframeForVid = document.createElement("iframe")
+    const video = videoData[index]
+    const { videoId } = video[index].video
+    console.log("Items", videoId)
+    iframeForVid.setAttribute("src", `https://www.youtube.com/embed/${videoId}`)
+    iframeForVid.setAttribute("width", "200")
+    iframeForVid.setAttribute("height", "200")
+    youtubeDiv.append(iframeForVid)
+
     const iframeForVid = document.createElement("iframe");
     const video = videoData[index];
     const { videoId } = video[0].video;
@@ -184,6 +196,7 @@ function createCards(restaurantsArray, videoData) {
     iframeForVid.setAttribute("height", "200");
     youtubeDiv.append(attractionsDiv);
     youtubeDiv.append(iframeForVid);
+
     card.append(youtubeDiv);
     // containerWrapDiv.append(youtubeDiv)
     searchDiv.append(containerWrapDiv);

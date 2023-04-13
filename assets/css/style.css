@@ -228,4 +228,16 @@ div.list-container{
     padding-right: 6px;
     background-color: #83cc16;
     border-radius: 6px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .attractionsDiv{
+    transform: rotate(-90deg);
+    width: 0px;
+    position: relative;
+    right: -60px;
+    top: 40px;
+    font-size: 20px;
+    color: #83cc16;
   }

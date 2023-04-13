@@ -163,6 +163,12 @@ function createCards(restaurantsArray, videoData) {
 
     card.append(restInfoDiv);
 
+    const attractionsDiv = document.createElement("div");
+    attractionsDiv.setAttribute("class", "attractionsDiv");
+    attractionsDiv.innerText = "Attractions";
+
+    
+
     //youtube Div for youtube videos
     const youtubeDiv = document.createElement("div");
     youtubeDiv.setAttribute("class", "youtubeDiv");
@@ -176,6 +182,7 @@ function createCards(restaurantsArray, videoData) {
     );
     iframeForVid.setAttribute("width", "250");
     iframeForVid.setAttribute("height", "200");
+    youtubeDiv.append(attractionsDiv);
     youtubeDiv.append(iframeForVid);
     card.append(youtubeDiv);
     // containerWrapDiv.append(youtubeDiv)

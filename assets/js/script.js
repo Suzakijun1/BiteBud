@@ -112,20 +112,23 @@ function createCards(restaurantsArray, videoData) {
     const card = document.createElement("div");
     card.setAttribute("class", "container");
     //website URL
-    const restWeb = document.createElement("h3");
-    restWeb.setAttribute("class", "restWeb");
-    restWeb.innerText = "Website: " + restaurant.website;
+    const restWeb = document.createElement("a");
+    restWeb.setAttribute("class", "restWeb infoHover");
+    restWeb.setAttribute("href", restaurant.website);
+    restWeb.setAttribute("target", "_blank");
+    restWeb.innerText = "~ View Restaurant Website ~";
     //name
     const restName = document.createElement("h3");
     restName.setAttribute("class", "restName");
     restName.innerText = restaurant.restaurantName;
     //Phone number
-    const restPhone = document.createElement("h3");
+    const restPhone = document.createElement("a");
     restPhone.setAttribute("class", "restPhone");
+    restPhone.setAttribute('href','tel:'+ restaurant.phone)
     restPhone.innerText = "Phone Number: " + restaurant.phone;
     //address
     const restAdd = document.createElement("h3");
-    restAdd.setAttribute("class", "restPrice");
+    restAdd.setAttribute("class", "restAdd");
     restAdd.innerText = "Address: " + restaurant.address;
     //type of food
     const restType = document.createElement("h3");
@@ -151,9 +154,9 @@ function createCards(restaurantsArray, videoData) {
     restInfoDiv.append(restName);
     restInfoDiv.append(restType);
     restInfoDiv.append(restOpen);
-    restInfoDiv.append(restWeb);
     restInfoDiv.append(restPhone);
     restInfoDiv.append(restAdd);
+    restInfoDiv.append(restWeb);
 
     card.append(restInfoDiv);
 

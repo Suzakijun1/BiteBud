@@ -181,6 +181,7 @@ div.list-container{
     margin-bottom: 20px;
     display: flex;
     flex-direction: row;
+    box-shadow: -2px 3px 10px #010200;
   }
 
   .hidden{
@@ -202,12 +203,21 @@ div.list-container{
   .restInfoDiv{
     text-align: center;
     width: 700px;
-    color: #b8c7f2;
-  
-
+    color: #dff1e5;
+    margin-top: 7px;
+    margin-left: 5px;
+    scroll-margin-right: 5px;
   }
 
   .restName{
     font-size: 25px;
-    color: aliceblue;
+    color: rgb(144, 237, 155);
+  }
+
+  .restPhone, .restAdd{
+    display: block;
+  }
+
+  .restWeb{
+    color: rgb(127, 201, 177);
   }

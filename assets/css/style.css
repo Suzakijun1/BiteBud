@@ -260,3 +260,34 @@ div.list-container{
     font-size: 20px;
     color: #83cc16;
 }
+
+.alertPopUp{
+  background-color: #bcf1aa;
+ width: 300px;
+ padding: 10px;
+ text-align: center;
+ position: relative;
+ right: -38%;
+ top: 100px;
+ border: 2px solid black;
+ border-radius: 14px;
+ box-shadow: -2px 3px 10px black;
+ font-size: 20px;
+ font-weight: bold;
+}
+
+.alertPopUp button {
+  border: 1px solid black;
+  width: 50px;
+  height: 28px;
+  font-size: 16px;
+  margin-bottom: 3px;
+  background-color: #404040;
+  color: #dff1e5;
+  box-shadow: -1px 4px 4px black;
+  border-radius: 3px;
+}
+
+.alertPopUp button:hover {
+  box-shadow: -1px 1px 2px black;
+}

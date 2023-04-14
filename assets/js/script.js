@@ -46,6 +46,7 @@ async function getRestaurants() {
   const { restaurants } = data;
   const fiveResults = restaurants.slice(0, 5);
   console.log(fiveResults);
+ 
 
   return fiveResults;
 }
@@ -82,6 +83,7 @@ async function fetchYoutubeVideo(city) {
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const getResults = async () => {
+ 
   try {
     const restaurantsArray = await getRestaurants();
     let videoDataArray = [];
@@ -90,12 +92,29 @@ const getResults = async () => {
       videoDataArray.push(videoData);
       await delay(200);
     }
-
     createCards(restaurantsArray, videoDataArray);
   } catch (error) {
     console.log(error);
+    console.log('no restaurants found :(');
+   const alertPopUp = document.createElement('div');
+   alertPopUp.setAttribute('class','alertPopUp');
+   const alertDivText = document.createElement('p');
+   alertDivText.innerText = 'Sorry no restaurants found. please try again.'
+   const alertBtn = document.createElement('button');
+   alertBtn.innerText = 'OK';
+   const appendingDiv = document.getElementById('mainPage') 
+   const loadingIcon = document.getElementById('loadingIcon')
+   loadingIcon.setAttribute('class','hidden');
+   alertPopUp.append(alertDivText);
+   alertPopUp.append(alertBtn);
+   appendingDiv.append(alertPopUp)
+   alertBtn.addEventListener('click',function(){
+     location.reload();
+   });
+
   }
 };
+
 
 //**** creates cards that contain restaurants info
 function createCards(restaurantsArray, videoData) {

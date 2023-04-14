@@ -1,5 +1,5 @@
 :root{
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Noto Sans Miao', sans-serif;;
     --greentext:#84cc16;
     --background:#b8c7f2;
     --container1:#2d3347;
@@ -134,7 +134,8 @@ div.list-container{
     width: 20%;
     border-radius: 9px;
     box-shadow: -2px 3px 7px black;
-    padding: 10px;
+    padding: 13px;
+    font-size: 18px;
   }
 
   #logoMain {
@@ -227,8 +228,13 @@ div.list-container{
     color: rgb(144, 237, 155);
   }
 
-  .restPhone, .restAdd{
+  .restPhone{
     display: block;
+  }
+
+  .restPhone:hover{
+    color: var(--greentext); 
+    border: none;
   }
 
   .restWeb{
@@ -263,17 +269,18 @@ div.list-container{
 
 .alertPopUp{
   background-color: #bcf1aa;
- width: 300px;
- padding: 10px;
- text-align: center;
- position: relative;
- right: -38%;
- top: 100px;
- border: 2px solid black;
- border-radius: 14px;
- box-shadow: -2px 3px 10px black;
- font-size: 20px;
- font-weight: bold;
+  width: 300px;
+  padding: 10px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid black;
+  border-radius: 14px;
+  box-shadow: -2px 3px 10px black;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .alertPopUp button {

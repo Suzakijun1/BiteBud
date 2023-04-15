@@ -30,7 +30,7 @@ var formMain = document.getElementById("formMain");
 //fetch for restaurant array for city and state once search button is clicked
 let loading = false;
 
-async function getRestaurants() {
+async function getRestaurants(state, city) {
   const options = {
     method: "GET",
     headers: {
@@ -39,27 +39,36 @@ async function getRestaurants() {
     },
   };
   const response = await fetch(
-    `https://restaurants-near-me-usa.p.rapidapi.com/restaurants/location/state/${stateInput.value}/city/${cityInput.value}/0`,
+    `https://restaurants-near-me-usa.p.rapidapi.com/restaurants/location/state/${state}/city/${city}/0`,
     options
   );
   const data = await response.json();
   const { restaurants } = data;
   const fiveResults = restaurants.slice(0, 5);
   console.log(fiveResults);
- 
 
   return fiveResults;
 }
 
 //**** search bar button event listener to start function chain and to hide main page
 searchBtn.addEventListener("click", function () {
-  getResults();
+  const city = cityInput.value;
+  const state = stateInput.value;
+
+  let history = JSON.parse(localStorage.getItem("history")) || [];
+
+  if (!history.includes({ city, state })) {
+    history.push({ city, state });
+    localStorage.setItem("history", JSON.stringify(history));
+  }
+  renderSearchHistory();
+  getResults(state, city);
   mainPage.classList.add("hidden");
   informationPage.classList.remove("hidden");
   testing.classList.add("hidden");
 });
 //**** function to grab info from restaurant list and search videos for them based on name and city.
-async function fetchYoutubeVideo(city) {
+async function fetchYoutubeVideo(state, city) {
   const options = {
     method: "GET",
     headers: {
@@ -68,10 +77,10 @@ async function fetchYoutubeVideo(city) {
     },
   };
   console.log(
-    `https://youtube-data8.p.rapidapi.com/search/?q=funthingstodoin${city} ${stateInput.value}&hl=en&gl=US`
+    `https://youtube-data8.p.rapidapi.com/search/?q=funthingstodoin${city} ${state}&hl=en&gl=US`
   );
   const response = await fetch(
-    `https://youtube-data8.p.rapidapi.com/search/?q=funthingstodoin${city} ${stateInput.value}&hl=en&gl=US`,
+    `https://youtube-data8.p.rapidapi.com/search/?q=funthingstodoin${city} ${state}&hl=en&gl=US`,
     options
   );
   const data = await response.json();
@@ -82,47 +91,44 @@ async function fetchYoutubeVideo(city) {
 // delay function to delay requests to youtube api
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const getResults = async () => {
- 
+const getResults = async (state, city) => {
   try {
-    const restaurantsArray = await getRestaurants();
+    const restaurantsArray = await getRestaurants(state, city);
     let videoDataArray = [];
     for (const restaurant of restaurantsArray) {
-      const videoData = await fetchYoutubeVideo(restaurant.cityName);
+      const videoData = await fetchYoutubeVideo(state, city);
       videoDataArray.push(videoData);
       await delay(200);
     }
     createCards(restaurantsArray, videoDataArray);
   } catch (error) {
     console.log(error);
-    console.log('no restaurants found :(');
-   const alertPopUp = document.createElement('div');
-   alertPopUp.setAttribute('class','alertPopUp');
-   const alertDivText = document.createElement('p');
-   alertDivText.innerText = 'Sorry no restaurants found. please try again.'
-   const alertBtn = document.createElement('button');
-   alertBtn.innerText = 'OK';
-   const appendingDiv = document.getElementById('mainPage') 
-   const loadingIcon = document.getElementById('loadingIcon')
-   loadingIcon.setAttribute('class','hidden');
-   alertPopUp.append(alertDivText);
-   alertPopUp.append(alertBtn);
-   appendingDiv.append(alertPopUp)
-   alertBtn.addEventListener('click',function(){
-     location.reload();
-   });
-
+    console.log("no restaurants found :(");
+    const alertPopUp = document.createElement("div");
+    alertPopUp.setAttribute("class", "alertPopUp");
+    const alertDivText = document.createElement("p");
+    alertDivText.innerText = "Sorry no restaurants found. please try again.";
+    const alertBtn = document.createElement("button");
+    alertBtn.innerText = "OK";
+    const appendingDiv = document.getElementById("mainPage");
+    const loadingIcon = document.getElementById("loadingIcon");
+    loadingIcon.setAttribute("class", "hidden");
+    alertPopUp.append(alertDivText);
+    alertPopUp.append(alertBtn);
+    appendingDiv.append(alertPopUp);
+    alertBtn.addEventListener("click", function () {
+      location.reload();
+    });
   }
 };
-
 
 //**** creates cards that contain restaurants info
 function createCards(restaurantsArray, videoData) {
   loadingIcon.setAttribute("class", "hidden");
   console.log(restaurantsArray);
-  searchDiv = document.getElementById("search-page");
-  containerWrapDiv = document.createElement("div");
-  containerWrapDiv.setAttribute("class", "container-wrapper");
+  const searchDiv = document.getElementById("search-page");
+  const containerWrapDiv = document.getElementById("container-wrapper");
+  containerWrapDiv.innerHTML = "";
   //foreach loop to create cards and append all drilled info onto them
 
   restaurantsArray.forEach((restaurant, index) => {
@@ -181,8 +187,6 @@ function createCards(restaurantsArray, videoData) {
     attractionsDiv.setAttribute("class", "attractionsDiv");
     attractionsDiv.innerText = "Attractions";
 
-    
-
     //youtube Div for youtube videos
     const youtubeDiv = document.createElement("div");
     youtubeDiv.setAttribute("class", "youtubeDiv");
@@ -190,7 +194,10 @@ function createCards(restaurantsArray, videoData) {
     const video = videoData[index];
     const { videoId } = video[index].video;
     console.log("Items", videoId);
-    iframeForVid.setAttribute("src", `https://www.youtube.com/embed/${videoId}`);
+    iframeForVid.setAttribute(
+      "src",
+      `https://www.youtube.com/embed/${videoId}`
+    );
     iframeForVid.setAttribute("width", "250");
     iframeForVid.setAttribute("height", "200");
     youtubeDiv.append(attractionsDiv);
@@ -213,32 +220,28 @@ const inputCity = document.getElementById("inputCity");
 const dropdownButton = document.querySelector("#testing");
 
 // Load stored past cities on page load
-document.addEventListener("DOMContentLoaded", function () {
+renderSearchHistory();
+function renderSearchHistory() {
   dropdownButton.innerHTML = "";
-  const storedCities = JSON.parse(localStorage.getItem("Cities")) || [];
-  for (let i = 0; i < storedCities.length; i++) {
+  const historyArray = JSON.parse(localStorage.getItem("history")) || [];
+  for (let i = 0; i < historyArray.length; i++) {
     const option = document.createElement("option");
-    option.text = storedCities[i];
+    option.text = `${historyArray[i].city}, ${historyArray[i].state}`;
+    option.value = historyArray[i];
+    option.addEventListener("click", function () {
+      console.log("clicked a history button", historyArray[i]);
+      getResults(historyArray[i].state, historyArray[i].city);
+      mainPage.classList.add("hidden");
+      informationPage.classList.remove("hidden");
+      testing.classList.add("hidden");
+    });
     dropdownButton.append(option);
   }
-});
+}
 
 // Upon clicking the search Button, the dropdown menu will populate new information
-searchBtn.addEventListener("click", function () {
-  const city = inputCity.value;
-  let cities = JSON.parse(localStorage.getItem("Cities")) || [];
+// searchBtn.addEventListener("click", function () {
+// //   const city = inputCity.value;
+// //   const state = stateInput.value;
 
-  if (!cities.includes(city)) {
-    cities.push(city);
-    localStorage.setItem("Cities", JSON.stringify(cities));
-  }
-
-  dropdownButton.innerHTML = "";
-  const storedCities = JSON.parse(localStorage.getItem("Cities")) || [];
-
-  for (let i = 0; i < storedCities.length; i++) {
-    const option = document.createElement("option");
-    option.text = storedCities[i];
-    dropdownButton.append(option);
-  }
-});
+// // });
